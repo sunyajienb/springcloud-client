@@ -1,4 +1,4 @@
-package com.sun.springcloudclient.aop;
+package com.sun.springcloudclient.aop.annotation;
 
 import com.sun.springcloudclient.aop.enums.DataSourceType;
 

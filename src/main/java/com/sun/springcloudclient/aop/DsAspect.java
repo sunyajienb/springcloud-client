@@ -1,5 +1,6 @@
 package com.sun.springcloudclient.aop;
 
+import com.sun.springcloudclient.aop.annotation.Ds;
 import com.sun.springcloudclient.config.DynamicDataSourceContextHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -22,7 +23,7 @@ import java.lang.reflect.Method;
 @Component
 public class DsAspect {
 
-    @Pointcut("@annotation(com.sun.springcloudclient.aop.Ds)")
+    @Pointcut("@annotation(com.sun.springcloudclient.aop.annotation.Ds)")
     public void dsPointCut() {
     }
 

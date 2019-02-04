@@ -12,6 +12,7 @@ import java.util.Map;
  * @time: 2019-02-04 16:55
  **/
 public class DynamicDataSource extends AbstractRoutingDataSource {
+
     public DynamicDataSource(DataSource defaultTargetDataSource, Map<Object, Object> targetDataSources) {
         super.setDefaultTargetDataSource(defaultTargetDataSource);
         super.setTargetDataSources(targetDataSources);

@@ -1,6 +1,6 @@
 package com.sun.springcloudclient.service.impl;
 
-import com.sun.springcloudclient.aop.Ds;
+import com.sun.springcloudclient.aop.annotation.Ds;
 import com.sun.springcloudclient.aop.enums.DataSourceType;
 import com.sun.springcloudclient.mapper.TestSlaveMapper;
 import com.sun.springcloudclient.model.TestSlave;
@@ -40,7 +40,7 @@ public class SlaveServiceImpl implements SlaveService {
     @Ds(DataSourceType.SLAVE)
     @Override
     public TestSlave select(Integer id) {
-        return testSlaveMapper.selectByPrimaryKey(1);
+        return testSlaveMapper.selectByPrimaryKey(id);
     }
 
 }

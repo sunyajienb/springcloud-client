@@ -25,14 +25,14 @@ public class SlaveTest {
     @Test
     public void testSlave() {
         TestSlave testSlave = new TestSlave();
-        testSlave.setAge(18);
-        testSlave.setName("wef565");
+        testSlave.setAge(10);
+        testSlave.setName("234ff");
         slaveService.insert(testSlave);
     }
 
     @Test
     public void testSelect() {
-        TestSlave testSlave = slaveService.select(1);
+        TestSlave testSlave = slaveService.select(11);
         System.out.println("slave=>" + testSlave);
     }
 
