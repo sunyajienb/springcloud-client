@@ -1,5 +1,6 @@
 package com.sun.springcloudclient.service;
 
+import com.sun.springcloudclient.model.Message;
 import com.sun.springcloudclient.model.TestSlave;
 
 /**
@@ -13,5 +14,7 @@ public interface SlaveService {
     void insert(TestSlave testSlave);
 
     TestSlave select(Integer id);
+
+    void sendMessage(Message message);
 
 }

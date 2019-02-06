@@ -3,9 +3,12 @@ package com.sun.springcloudclient.service.impl;
 import com.sun.springcloudclient.aop.annotation.Ds;
 import com.sun.springcloudclient.aop.enums.DataSourceType;
 import com.sun.springcloudclient.mapper.TestSlaveMapper;
+import com.sun.springcloudclient.model.Message;
 import com.sun.springcloudclient.model.TestSlave;
+import com.sun.springcloudclient.service.KafkaSendService;
 import com.sun.springcloudclient.service.SlaveService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +23,13 @@ import javax.annotation.Resource;
 @Service
 public class SlaveServiceImpl implements SlaveService {
 
+    @Value("${spring.kafka.search.topic}")
+    private String topic;
+
     @Resource
     private TestSlaveMapper testSlaveMapper;
+    @Resource
+    private KafkaSendService kafkaSendService;
 
     @Ds(value = DataSourceType.MASTER)
     @Transactional(rollbackFor = Exception.class)
@@ -41,6 +49,11 @@ public class SlaveServiceImpl implements SlaveService {
     @Override
     public TestSlave select(Integer id) {
         return testSlaveMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void sendMessage(Message message) {
+        kafkaSendService.sendMessage(topic, message);
     }
 
 }
