@@ -5,10 +5,7 @@ import com.sun.springcloudclient.model.Message;
 import com.sun.springcloudclient.model.Response;
 import com.sun.springcloudclient.model.TestSlave;
 import com.sun.springcloudclient.service.SlaveService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -31,6 +28,26 @@ public class KafkaController {
         Message message = new Message();
         message.setId(testSlave.getId().toString());
         message.setAction(Constants.add_index);
+        message.setSendTime(new Date());
+        message.setBody(testSlave);
+        slaveService.sendMessage(message);
+        return Response.getInstance();
+    }
+
+    @GetMapping("delete")
+    public Response deleteIndex(Integer id) {
+        Message message = new Message();
+        message.setId(id.toString());
+        message.setAction(Constants.delete_index);
+        slaveService.sendMessage(message);
+        return Response.getInstance();
+    }
+
+    @PostMapping("update")
+    public Response updateIndex(@RequestBody TestSlave testSlave) {
+        Message message = new Message();
+        message.setId(testSlave.getId().toString());
+        message.setAction(Constants.update_index);
         message.setSendTime(new Date());
         message.setBody(testSlave);
         slaveService.sendMessage(message);
